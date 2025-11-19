@@ -103,7 +103,9 @@ Processing rules:
 ---
 
 ## 5. PD Model Development
-Logistic Regression with:
+The Probability of Default (PD) represents the likelihood that a borrower will default within a given time horizon
+
+This project builds the PD model using Logistic Regression, with:
 - p-values for coefficient significance  
 - hypothesis testing for β ≠ 0  
 
@@ -156,13 +158,13 @@ PSI thresholds:
 ---
 
 ## 9. LGD Modeling: Two-Stage Approach
-Only applied to defaulted loans.
+Loss Given Default represents the share of exposure that the lender expects to lose if a borrower defaults
 
 ### Stage 1 — Probability that LGD > 0  
-**Logistic Regression**
+Using Logistic Regression to predict whether a defaulted loan results in any loss.
 
 ### Stage 2 — Expected LGD given LGD > 0  
-**Linear Regression**
+Using Linear Regression to estimate the magnitude of loss, but only for cases where a loss actually occurs.
 
 Combined formula:
 
@@ -174,17 +176,19 @@ $$
 ---
 
 ## 10. EAD Modeling
+Exposure at Default represents the expected amount of the loan that will be outstanding at the moment the borrower defaults.
+
+For products where borrowers can draw additional funds before default (e.g., credit lines, credit cards), Basel requires estimating a Credit Conversion Factor (CCF). CCF measures the proportion of the unused or undrawn portion that is likely to be drawn down by the borrower prior to default.
+
 $$
 \text{EAD} = \text{CCF} \times \text{FundedAmount}
 $$
-
-
 
 $$
 \text{CCF} = \frac{\text{OutstandingDefault}}{\text{FundedAmount}}
 $$
 
-
+Linear Regression is used to predict the expected CCF.
 
 ---
 
@@ -199,7 +203,7 @@ Aggregated EL represents the total required loss provisioning.
 
 ---
 
-## 12. src/ Folder
+## 12. src
 Contains core functions:
 - LogisticRegression_with_p_values  
 - WoE & IV functions  

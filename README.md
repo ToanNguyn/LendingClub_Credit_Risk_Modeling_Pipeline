@@ -135,7 +135,7 @@ Includes:
 
 ---
 
-## 8. Model Monitoring (Using 2015 Data)
+## 8. Model Monitoring 
 To simulate production monitoring, the 2015 dataset is used.
 
 Steps:

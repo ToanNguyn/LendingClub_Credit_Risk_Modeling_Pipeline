@@ -75,7 +75,6 @@ Main components:
 ---
 
 ## 4. Feature Engineering: Fine Classing → Coarse Classing → WoE
-Industry-standard transformation for credit scoring:
 
 ### **Fine Classing**
 - Split variables into small bins  
@@ -88,7 +87,10 @@ Industry-standard transformation for credit scoring:
 - Reduce noise & overfitting
 
 ### **WOE Transformation**
-WOE = ln(Good% / Bad%)
+$$
+\text{WOE} = \ln\left(\frac{\text{Good}\%}{\text{Bad}\%}\right)
+$$
+
 Interpretation:
 - WOE > 0 → good customers dominate  
 - WOE < 0 → bad customers dominate  
@@ -141,7 +143,10 @@ Steps:
 - Bin the score contributions  
 - Calculate PSI between (2007–2014) and 2015  
 
-PSI = Σ (Pi − Qi) * ln(Pi / Qi)
+$$
+\text{PSI} = \sum (P_i - Q_i) \cdot \ln\left(\frac{P_i}{Q_i}\right)
+$$
+
 
 PSI thresholds:
 - < 0.1 → stable  
@@ -161,19 +166,35 @@ Only applied to defaulted loans.
 
 Combined formula:
 
-LGD = P(LGD > 0) × E[LGD | LGD > 0]
+$$
+\text{LGD} = P(\text{LGD} > 0) \times \mathbb{E}[\text{LGD} \mid \text{LGD} > 0]
+$$
+
 
 ---
 
 ## 10. EAD Modeling
-EAD = CCF × funded_amount
-CCF = Outstanding_at_Default / Funded_Amount
+$$
+\text{EAD} = \text{CCF} \times \text{FundedAmount}
+$$
+
+
+
+$$
+\text{CCF} = \frac{\text{OutstandingDefault}}{\text{FundedAmount}}
+$$
+
+
 
 ---
 
 ## 11. Expected Loss
 Final risk estimate:
-EL = PD × LGD × EAD
+
+$$
+\text{EL} = \text{PD} \times \text{LGD} \times \text{EAD}
+$$
+
 Aggregated EL represents the total required loss provisioning.
 
 ---
